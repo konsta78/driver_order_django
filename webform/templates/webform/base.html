@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru" xmlns="">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Форма для заказа офисного водителя (курьера)</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'webform/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'webform/check_radio.css' %}">
+</head>
+
+<body>
+    <form method="post" action="" id="formSubmit">
+        <div id="conteiner">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </form>
+</body>
+
+<script src="{% static 'webform/js/hints.js' %}"></script>
+<script src="{% static 'webform/js/html-snippets.js' %}"></script>
+<script src="https://maps.api.2gis.ru/2.0/loader.js"></script>
+<script src="{% static 'webform/js/map.js' %}"></script>
+<script src="{% static 'webform/js/jquery.js' %}"></script>
+<script src="{% static 'webform/js/jquery.maskedinput.js' %}"></script>
+<script src="{% static 'webform/js/scripts.js' %}"></script>
+
+</html>
