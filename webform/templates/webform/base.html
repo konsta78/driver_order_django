@@ -12,9 +12,13 @@
 
 <body>
     <form method="post" action="" id="formSubmit">
+        {% csrf_token %}
         <div id="conteiner">
-            {% block content %}
-            {% endblock %}
+            <fieldset class="main_fs">
+                <legend><b>Форма заказа офисного водителя (курьера)</b></legend>
+                {% block content %}
+                {% endblock %}
+            </fieldset>
         </div>
     </form>
 </body>

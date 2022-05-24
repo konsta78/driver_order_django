@@ -1,129 +1,126 @@
 {% extends "webform/base.html" %}
 {% block content %}
-<fieldset class="main_fs">
-    <legend><b>Форма заказа офисного водителя (курьера)</b></legend>
-    <table>
+<table>
+    <tr>
+        <td>Дата выполнения заказа: </td>
+        <td><input type="date" name="order_date" id="order_date" required /></td>
+    </tr>
+    <tr>
+        <td>Время подачи автомобиля: </td>
+        <td><input type="time" name="order_time_start" id="order_time_start" required /></td>
+    </tr>
+    <tr>
+        <td>Время выполенения заказа: </td>
+        <td><input type="time" name="order_time_finish" id="order_time_finish" required /></td>
+    </tr>
+</table>
+
+<!-- Блок "Контактное лицо"-->
+
+<fieldset class="secondary_fs">
+    <legend>Контактное лицо: </legend>
+    <div id="div_checkbox_contact">
+        <input type="checkbox" name="checkbox_change_contact" id="checkbox_change_contact" onchange="toogleContact()">
+        <label for="checkbox_change_contact"> Сотрудник ГК "Деловые линии"</label>
+        <p></p>
+    </div>
+    <div id="div_contact">
+        <!-- вставка html-code -->
+    </div>
+</fieldset>
+
+<!-- Блок "Характер груза" -->
+
+<fieldset class="secondary_fs">
+    <legend>Характер груза:</legend>
+    <table height="150px">
         <tr>
-            <td>Дата выполнения заказа: </td>
-            <td><input type="date" name="order_date" id="order_date" required /></td>
+            <td width="150px" valign="top">
+                <input type="radio" id="choice1" name="radio_type_order" value="docs" checked
+                onclick="chooseRadioCargo()">
+                <label for="choice1">Документы</label>
+            </td>
+            <td rowspan="3" height="100px" valign="top">
+                <div id="div_type_order">
+                    <!-- вставка html-code -->
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Время подачи автомобиля: </td>
-            <td><input type="time" name="order_time_start" id="order_time_start" required /></td>
+            <td valign="center">
+                <input type="radio" id="choice2" name="radio_type_order" value="cargo"
+                onclick="chooseRadioCargo()">
+                <label for="choice2">Груз</label>
+            </td>
         </tr>
         <tr>
-            <td>Время выполенения заказа: </td>
-            <td><input type="time" name="order_time_finish" id="order_time_finish" required /></td>
+            <td valign="bottom">
+                <input type="radio" id="choice3" name="radio_type_order" value="passenger"
+                onclick="chooseRadioCargo()">
+                <label for="choice3">Пассажир</label>
+            </td>
         </tr>
     </table>
-
-    <!-- Блок "Контактное лицо"-->
-
-    <fieldset class="secondary_fs">
-        <legend>Контактное лицо: </legend>
-        <div id="div_checkbox_contact">
-            <input type="checkbox" name="checkbox_change_contact" id="checkbox_change_contact" onchange="toogleContact()">
-            <label for="checkbox_change_contact"> Сотрудник ГК "Деловые линии"</label>
-            <p></p>
-        </div>
-        <div id="div_contact">
-            <!-- вставка html-code -->
-        </div>
-    </fieldset>
-
-    <!-- Блок "Характер груза" -->
-
-    <fieldset class="secondary_fs">
-        <legend>Характер груза:</legend>
-        <table height="150px">
-            <tr>
-                <td width="150px" valign="top">
-                    <input type="radio" id="choice1" name="radio_type_order" value="docs" checked
-                    onclick="chooseRadioCargo()">
-                    <label for="choice1">Документы</label>
-                </td>
-                <td rowspan="3" height="100px" valign="top">
-                    <div id="div_type_order">
-                        <!-- вставка html-code -->
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td valign="center">
-                    <input type="radio" id="choice2" name="radio_type_order" value="cargo"
-                    onclick="chooseRadioCargo()">
-                    <label for="choice2">Груз</label>
-                </td>
-            </tr>
-            <tr>
-                <td valign="bottom">
-                    <input type="radio" id="choice3" name="radio_type_order" value="passenger"
-                    onclick="chooseRadioCargo()">
-                    <label for="choice3">Пассажир</label>
-                </td>
-            </tr>
-        </table>
-    </fieldset>
-
-    <!-- Блок "Маршрут" -->
-
-    <fieldset class="secondary_fs">
-        <legend>Маршрут:</legend>
-        <table width="100%" style="border-spacing: 0px;">
-            <tr data-point_A id="labelA" class="label_checked">
-                <td align="right" width="150px" style="padding-right: 10px;">
-                    <label>
-                        <b>Из пункта "A": </b></label></td>
-                <td>
-                    <div id="select_address_A">
-                        <input type="text" name="address_A" id="address_A" placeholder="Введите адрес" required/>
-                    </div>
-                    <input type="hidden" name="pos_xA" id="pos_xA" value="">
-                    <input type="hidden" name="pos_yA" id="pos_yA" value="">
-                </td>
-                <td style="padding: 10px;">
-                    <img src="static/webform/icons/cross.png" width="20px" height="20px" id="delMarkerA">
-                </td>
-            </tr>
-            <tr data-point_B id="labelB">
-                <td align="right" style="padding-right: 10px;">
-                    <label>
-                        <b>В пункт "Б": </b></label></td>
-                <td>
-                    <div id="select_address_B">
-                        <input type="text" name="address_B" id="address_B"
-                            placeholder="Введите адрес" required/>
-                    </div>
-                    <input type="hidden" name="pos_xB" id="pos_xB" value="">
-                    <input type="hidden" name="pos_yB" id="pos_yB" value="">
-                </td>
-                <td style="padding: 10px;">
-                    <img src="static/webform/icons/cross.png" width="20px" height="20px" id="delMarkerB">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <p></p>
-                    <div id="map" class="route_map"></div>
-                </td>
-            </tr>
-        </table>
-    </fieldset>
-
-    <!-- Блок "Комментарии" -->
-
-    <fieldset class="secondary_fs">
-        <legend>Комментарии:</legend>
-        <div>
-            <textarea rows="5" name="comments"></textarea>
-        </div>
-    </fieldset>
-
-    <!-- Кнопка "Отправить" -->
-
-    <p align="center">
-        <button type="submit" id="submitButton">Отправить</button>
-    </p>
-
 </fieldset>
+
+<!-- Блок "Маршрут" -->
+
+<fieldset class="secondary_fs">
+    <legend>Маршрут:</legend>
+    <table width="100%" style="border-spacing: 0px;">
+        <tr data-point_A id="labelA" class="label_checked">
+            <td align="right" width="150px" style="padding-right: 10px;">
+                <label>
+                    <b>Из пункта "A": </b></label></td>
+            <td>
+                <div id="select_address_A">
+                    <input type="text" name="address_A" id="address_A" placeholder="Введите адрес" required/>
+                </div>
+                <input type="hidden" name="pos_xA" id="pos_xA" value="">
+                <input type="hidden" name="pos_yA" id="pos_yA" value="">
+            </td>
+            <td style="padding: 10px;">
+                <span class="cross" id="delMarkerA">X</span>
+            </td>
+        </tr>
+        <tr data-point_B id="labelB">
+            <td align="right" style="padding-right: 10px;">
+                <label>
+                    <b>В пункт "Б": </b></label></td>
+            <td>
+                <div id="select_address_B">
+                    <input type="text" name="address_B" id="address_B"
+                        placeholder="Введите адрес" required/>
+                </div>
+                <input type="hidden" name="pos_xB" id="pos_xB" value="">
+                <input type="hidden" name="pos_yB" id="pos_yB" value="">
+            </td>
+            <td style="padding: 10px;">
+                <span class="cross" id="delMarkerB">X</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <p></p>
+                <div id="map" class="route_map"></div>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+
+<!-- Блок "Комментарии" -->
+
+<fieldset class="secondary_fs">
+    <legend>Комментарии:</legend>
+    <div>
+        <textarea rows="5" name="comments" id="comments"></textarea>
+    </div>
+</fieldset>
+
+<!-- Кнопка "Отправить" -->
+
+<p align="center">
+    <button type="submit" id="submitButton"}">Отправить</button>
+    <input type="hidden" name="cargo_type" id="cargo_type" value="">
+</p>
 {% endblock %}

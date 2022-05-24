@@ -54,8 +54,9 @@ DG.then(function () {
             }).addTo(map);
             markers[1] = "markerB";
         }
-        // document.querySelector(`pos_x${currentMarker}`).setAttribute("value", x);
-        // document.querySelector(`pos_y${currentMarker}`).setAttribute("value", y);
+        
+        document.querySelector(`#pos_x${currentMarker}`).setAttribute("value", x);
+        document.querySelector(`#pos_y${currentMarker}`).setAttribute("value", y);
         getAddresses(x, y, 50);
     });
 });

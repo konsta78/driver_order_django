@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru" xmlns="">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Форма для заказа офисного водителя (курьера)</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'webform/style.css' %}">
+</head>
+
+<body>
+    <div id="conteiner">
+        <fieldset class="main_fs">
+            <legend><b>Форма заказа офисного водителя (курьера)</b></legend>
+            <p>Заявка успешно отправлена</p>
+            <p><a href="{% url 'index' %}">На главную</p>
+        </fieldset>
+    </div>
+</body>
+
+</html>

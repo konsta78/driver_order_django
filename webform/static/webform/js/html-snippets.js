@@ -49,7 +49,8 @@ let divDocs = '<input type="checkbox" name="proxy" id="proxy">\
                 <input type="checkbox" onchange="stampCheck()" name="stamp_checkbox" id="stamp_checkbox">\
                 <label for="stamp_checkbox"> Печать</label>\
                     <select name="stamp_select" id="stamp_select" disabled="">\
-                        <option selected>АБ СПб "Параграфос"</option>\
+                        <option selected></option>\
+                        <option>АБ СПб "Параграфос"</option>\
                         <option>АО "Траст МР"</option>\
                         <option>АО "ТРАФФИК"</option>\
                         <option>ООО "0578 Холдинг"</option>\
@@ -75,11 +76,11 @@ let divDocs = '<input type="checkbox" name="proxy" id="proxy">\
 // Блок html-кода: 'Характер груза' - 'Груз'
 let divCargo = '<p>Параметры груза:\
                 <div>ДxШxВ:\
-                <input type="text" style="width: 35px;" name="cargo_size_d" id="cargo_size_d">\
-                х <input type="text" style="width: 35px;" name="cargo_size_sh" id="cargo_size_sh">\
-                х <input type="text" style="width: 35px;" name="cargo_size_v" id="cargo_size_v"> м;\
-                Объем: <input type="text" style="width: 35px;" name="cargo_volume" id="cargo_volume"> м3;\
-                Вес: <input type="text" style="width: 35px;" name="cargo_weight" id="cargo_weight"> кг</div>';
+                <input type="text" style="width: 35px;" name="cargo_size_d" id="cargo_size_d" value="0">\
+                х <input type="text" style="width: 35px;" name="cargo_size_sh" id="cargo_size_sh" value="0">\
+                х <input type="text" style="width: 35px;" name="cargo_size_v" id="cargo_size_v" value="0"> м;\
+                Объем: <input type="text" style="width: 35px;" name="cargo_volume" id="cargo_volume" value="0"> м3;\
+                Вес: <input type="text" style="width: 35px;" name="cargo_weight" id="cargo_weight" value="0"> кг</div>';
 
 // Блок html-кода: 'Характер груза' - 'Пассажир'
 let divPassenger = '<table class="contact">\

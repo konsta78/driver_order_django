@@ -60,13 +60,13 @@ function chooseRadioCargo() {
     
     newCargoDiv.innerHTML = `<div id="div_type_order">${divsDict[radio_checked.value]}</div>`;
     currentCargoDiv.replaceWith(newCargoDiv);
+    
     if (radio_checked.value == 'cargo') {
-        console.log('---')
-        setMask("#cargo_size_d", "v?vvv", ".");
-        setMask("#cargo_size_sh", "v?vvv", ".");
-        setMask("#cargo_size_v", "v?vvv", ".");
-        setMask("#cargo_volume", "v?vvv", ".");
-        setMask("#cargo_weight", "v?vv", ".");
+        setMask("#cargo_size_d", "v?vvv", "");
+        setMask("#cargo_size_sh", "v?vvv", "");
+        setMask("#cargo_size_v", "v?vvv", "");
+        setMask("#cargo_volume", "v?vvv", "");
+        setMask("#cargo_weight", "v?vv", "");
         return
     }
     if (radio_checked.value == 'passenger') {
@@ -78,21 +78,37 @@ function chooseRadioCargo() {
 // установка/снятие блокировки выбора наименования компании в зависимости от наличия/отсутствия печати
 function stampCheck() {
     let stamp = document.querySelector('#stamp_checkbox'),
-        stampSelect = document.getElementById("stamp_select");
+        stampSelect = document.querySelector("#stamp_select");
         
     (stamp.checked) ? stampSelect.removeAttribute("disabled"):
         stampSelect.setAttribute("disabled", "disabled");
 }
 
+// Проверка данных из формы перед отправкой нового заказа
+// Сохранение типа груза в шаблоне страницы
+function createFormData(event) {
+
+    event.preventDefault();
+    if (!markerA || !markerB) {
+        alert('Необходимо установить маркеры на карте');
+        return;
+    }
+
+    let cargo_checked = document.querySelector('[type="radio"]:checked');
+    document.querySelector('#cargo_type').setAttribute('value', cargo_checked.value);
+    this.submit();
+}
+
 // назначение объектам формы обработчиков событий
 function setAllListeners() {
-    document.querySelector('[data-point_A]').addEventListener('click', toogleMarker)
-    document.querySelector('[data-point_B]').addEventListener('click', toogleMarker)
-    delMarkerA.addEventListener('click', deleteMarker);
-    delMarkerB.addEventListener('click', deleteMarker);
+    document.querySelector('[data-point_A]').addEventListener('click', toogleMarker);
+    document.querySelector('[data-point_B]').addEventListener('click', toogleMarker);
+    document.querySelector('#delMarkerA').addEventListener('click', deleteMarker);
+    document.querySelector('#delMarkerB').addEventListener('click', deleteMarker);
+    formSubmit.addEventListener('submit', createFormData);
    }
 
-// настройка начальных параметров при первом вызове формы
+// настройка начальных параметров при загрузке формы
 toogleContact();
 chooseRadioCargo();
 setAllListeners();
