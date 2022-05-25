@@ -60,7 +60,7 @@ function chooseRadioCargo() {
     
     newCargoDiv.innerHTML = `<div id="div_type_order">${divsDict[radio_checked.value]}</div>`;
     currentCargoDiv.replaceWith(newCargoDiv);
-    
+
     if (radio_checked.value == 'cargo') {
         setMask("#cargo_size_d", "v?vvv", "");
         setMask("#cargo_size_sh", "v?vvv", "");
@@ -86,9 +86,10 @@ function stampCheck() {
 
 // Проверка данных из формы перед отправкой нового заказа
 // Сохранение типа груза в шаблоне страницы
-function createFormData(event) {
+function checkFormData(event) {
 
     event.preventDefault();
+
     if (!markerA || !markerB) {
         alert('Необходимо установить маркеры на карте');
         return;
@@ -96,6 +97,14 @@ function createFormData(event) {
 
     let cargo_checked = document.querySelector('[type="radio"]:checked');
     document.querySelector('#cargo_type').setAttribute('value', cargo_checked.value);
+
+    if (cargo_checked.value == 'cargo' && 
+        document.querySelector('#stamp_checkbox').checked && 
+        document.querySelector('#stamp_select').value == "") {
+        alert('При наличии печати необходимо указать наименование органзации');
+        return;
+    }
+   
     this.submit();
 }
 
@@ -105,7 +114,7 @@ function setAllListeners() {
     document.querySelector('[data-point_B]').addEventListener('click', toogleMarker);
     document.querySelector('#delMarkerA').addEventListener('click', deleteMarker);
     document.querySelector('#delMarkerB').addEventListener('click', deleteMarker);
-    formSubmit.addEventListener('submit', createFormData);
+    formSubmit.addEventListener('submit', checkFormData);
    }
 
 // настройка начальных параметров при загрузке формы

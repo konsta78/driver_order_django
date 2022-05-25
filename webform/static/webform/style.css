@@ -31,7 +31,6 @@ input[type="text"] {width: 400px;}
 input[placeholder="Введите адрес"] {width: 480px;}
 input[type="tel"] {width: 170px;}
 
-
 button {
     background-color: rgb(252, 175, 23);
     border-radius: 16px;
@@ -42,7 +41,6 @@ button {
     margin-top: 1em;
     cursor: pointer;
 }
-
 
 /* Основной fieldset */
 fieldset {
@@ -99,7 +97,5 @@ fieldset {
 
 .cross {
     font-size: 24px;
-    color: rgb(252, 175, 23);
-    /* background-color: black; */
     cursor: pointer;
 }
